@@ -4,12 +4,15 @@ app.use(express.json());
 
 const taskRoutes = require('./routes/tasksRoutes');
 const userRoutes = require('./routes/userRoutes');
-const swaggerApp = require('./config/swagger');
+const configureSwagger = require('./config/swagger');
 
 // Use prefixos diferentes para as rotas
 app.use('/tasks', taskRoutes);
 app.use('/users', userRoutes);
-app.use(swaggerApp);
+
+// Configure o Swagger
+configureSwagger(app);
+
 app.get('/', (req, res) => {
     res.send('Servidor Express funcionando!');
 });

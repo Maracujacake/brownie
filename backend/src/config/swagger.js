@@ -1,6 +1,5 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const express = require('express');
 
 const swaggerDefinition = {
     openapi: '3.0.0',
@@ -19,12 +18,11 @@ const swaggerDefinition = {
 
 const options = {
     swaggerDefinition,
-    apis: ['./src/routes/*.js']
+    apis: ['./src/routes/*.js'], // Caminho para os arquivos de rotas com comentários do Swagger
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
-const swaggerApp = express();
-swaggerApp.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-module.exports = swaggerApp;
+module.exports = (app) => {
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+};
