@@ -1,31 +1,15 @@
 const express = require('express');
-const mysql = require('mysql2');
-const dotenv = require('dotenv');
-
-
-dotenv.config();
 const app = express();
 app.use(express.json());
-console.log(process.env.DB_HOST); // Deve imprimir 'localhost'
-console.log(process.env.DB_HOST); // Deve imprimir 'localhost'
-console.log(process.env.DB_HOST); // Deve imprimir 'localhost'
-console.log(process.env.DB_HOST); // Deve imprimir 'localhost'
-console.log(process.env.DB_HOST); // Deve imprimir 'localhost'
 
+const taskRoutes = require('./routes/tasksRoutes');
+const userRoutes = require('./routes/userRoutes');
+const swaggerApp = require('./config/swagger');
 
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
-
-// teste de conexão
-db.connect(err => {
-    if (err) throw err;
-    console.log('Conectado ao banco de dados MySQL.');
-});
-
+// Use prefixos diferentes para as rotas
+app.use('/tasks', taskRoutes);
+app.use('/users', userRoutes);
+app.use(swaggerApp);
 app.get('/', (req, res) => {
     res.send('Servidor Express funcionando!');
 });
@@ -33,5 +17,3 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');
 });
-
-// node app.js para executar
