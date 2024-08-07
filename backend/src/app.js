@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:4200' // URL do frontend
+  }));
+
 
 const taskRoutes = require('./routes/tasksRoutes');
 const userRoutes = require('./routes/userRoutes');

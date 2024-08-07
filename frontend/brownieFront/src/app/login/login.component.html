@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput [(ngModel)]="id" name="id" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Senha</mat-label>
+      <input matInput [(ngModel)]="senha" name="senha" type="password" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Login</button>
+    <button mat-button routerLink="/register">Cadastro</button>
+  </form>
