@@ -1,15 +1,16 @@
-<form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="bg-blue-300 min-h-screen flex items-center justify-center">
+<form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="bg-blue-400 min-h-screen flex items-center justify-center">
+  <img src="/brownieRender2.png" class="absolute top-5 left-5 m-4 size-24">
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
-    <h1 class="text-brown text-2xl font-bold mb-4">Brownie</h1>
+    <h1 class="text-amber-800 text-center text-2xl font-bold mb-4 candy-font">Brownie</h1>
     <mat-form-field class="w-full mb-4">
-      <mat-label>Nome</mat-label>
+      <mat-label>Escolha um nome</mat-label>
       <input matInput [(ngModel)]="nome" name="nome" required class="focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"/>
     </mat-form-field>
     <mat-form-field class="w-full mb-4">
-      <mat-label>Senha</mat-label>
+      <mat-label>Escolha uma senha</mat-label>
       <input matInput [(ngModel)]="senha" name="senha" type="password" required class="focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"/>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit" class="w-full mb-2 bg-blue-500 text-white hover:bg-blue-600">Cadastrar</button>
-    <button mat-button routerLink="/login" class="w-full text-blue-500 hover:text-blue-600">Login</button>
+    <button mat-button routerLink="/login" class="w-full text-blue-500 hover:text-blue-600">Já é cadastrado? Faça Login</button>
   </div>
 </form>
