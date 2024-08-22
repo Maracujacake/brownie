@@ -15,7 +15,7 @@ import { ApiService } from '../api.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    NgIf 
+    NgIf
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']

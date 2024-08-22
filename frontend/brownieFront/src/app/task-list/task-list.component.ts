@@ -1,25 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-list',
+  imports: [CommonModule],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
   tasks: any[] = [];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.apiService.getTasks(Number(userId)).subscribe(
-        tasks => this.tasks = tasks,
-        error => alert('Erro ao carregar tarefas')
-      );
+    this.loadTasks();
+  }
+
+  loadTasks(): void {
+    if (this.isBrowser()) {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        this.apiService.getTasks(Number(userId)).subscribe(
+          (data: any[]) => {
+            this.tasks = data;
+          },
+          error => {
+            console.error('Erro ao carregar tarefas:', error);
+          }
+        );
+      } else {
+        console.error('Usuário não encontrado no localStorage.');
+      }
     } else {
-      alert('Usuário não autenticado');
+      console.error('localStorage não está disponível.');
     }
+  }
+  
+  isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 }
