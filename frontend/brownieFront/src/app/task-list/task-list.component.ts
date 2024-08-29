@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-task-list',
   imports: [CommonModule],
+  standalone: true,
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
